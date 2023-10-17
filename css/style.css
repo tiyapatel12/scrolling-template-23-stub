@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.image {
+    height: 100vh;
+}
+
+.blue {
+    background-color: #b8e1ff;
+}
+
+.green {
+    background-color: #d4ffd5;
+}
