@@ -1,20 +1,35 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .image {
-    height: 100vh;
+  height: 100vh;
 }
 
 .blue {
-    background-color: #dcedfc;
+  background-color: #dcedfc;
 }
 
 .green {
-    background-color: #d4ffd5;
+  background-color: #d4ffd5;
 }
 
 .red {
-    background-color: #fab2ac;
+  background-color: red;
+}
+
+/* The animation code */
+@keyframes redToYellow {
+  from {
+    background-color: red;
+  }
+  to {
+    background-color: yellow;
+  }
+}
+
+.intersecting {
+  animation-name: redToYellow;
+  animation-duration: 4s;
 }

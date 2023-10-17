@@ -3,7 +3,8 @@ let mainDiv = document.getElementById("scrollArea");
 console.log(mainDiv)
 
 let options = {
-  root: mainDiv,
+  //root: mainDiv,
+  
   rootMargin: "0px",
   threshold: 1.0,
 };
@@ -13,6 +14,10 @@ let callback = (entries, observer) => {
   entries.forEach((entry) => {
     console.log("entry observed", entry);
     console.log(entry.isIntersecting)
+    if(entry.isIntersecting) {
+      const element = entry.target
+      element.classList.add("intersecting")
+    }
     // Each entry describes an intersection change for one observed
     // target element:
     //   entry.boundingClientRect
