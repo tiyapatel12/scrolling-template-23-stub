@@ -4,7 +4,7 @@
 }
 
 /* style for main body */
-body{
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,11 +38,26 @@ body{
   }
 }
 
-.intersecting.blue-to-green{
+.intersecting.blue-to-green {
   /*animation name so it can identify keyframe */
   animation-name: blueToGreen;
   /* how long does the animation last in seconds */
   animation-duration: 4s;
   /* let it know that we want to keep the last keyframe */
   animation-fill-mode: forwards;
+}
+
+/* The animation code for an x translation */
+@keyframes leftToRight {
+  0% {
+    transform: translateX(-1000px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.intersecting.left-to-right {
+  animation-name: leftToRight;
+  animation-duration: 2s;
 }
