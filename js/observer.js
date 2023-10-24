@@ -1,7 +1,5 @@
 let mainDiv = document.getElementById("scrollArea");
 
-console.log(mainDiv)
-
 let options = {
   //root: mainDiv,
   
@@ -9,24 +7,13 @@ let options = {
   threshold: 1.0,
 };
 
-let callback = (entries, observer) => {
-  console.log("callback of observer");
+let callback = (entries, _observer) => {
   entries.forEach((entry) => {
-    console.log("entry observed", entry);
     console.log(entry.isIntersecting)
     if(entry.isIntersecting) {
       const element = entry.target
-      element.classList.add("intersecting")
+      element.classList.add('intersecting')
     }
-    // Each entry describes an intersection change for one observed
-    // target element:
-    //   entry.boundingClientRect
-    //   entry.intersectionRatio
-    //   entry.intersectionRect
-    //   entry.isIntersecting
-    //   entry.rootBounds
-    //   entry.target
-    //   entry.time
   });
 };
 
