@@ -19,7 +19,7 @@
 }
 
 /* The animation code going from a specific background color to another */
-@keyframes redToYellow {
+@keyframes blueToGreen {
   from {
     background-color: #dcedfc;
   }
@@ -30,7 +30,7 @@
 
 .intersecting {
   /*animation name so it can identify keyframe */
-  animation-name: redToYellow;
+  animation-name: blueToGreen;
   /* how long does the animation last in seconds */
   animation-duration: 4s;
   /* let it know that we want to keep the last keyframe */
