@@ -3,6 +3,7 @@
   padding: 0;
 }
 
+/* style for main body */
 body{
   display: flex;
   flex-direction: column;
