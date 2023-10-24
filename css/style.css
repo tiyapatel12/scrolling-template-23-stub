@@ -4,7 +4,7 @@
 }
 
 /* set element to have viewport height */
-.full_height {
+.full-height {
   height: 100vh;
 }
 
@@ -28,7 +28,7 @@
   }
 }
 
-.intersecting {
+.intersecting.blue-to-green{
   /*animation name so it can identify keyframe */
   animation-name: blueToGreen;
   /* how long does the animation last in seconds */
