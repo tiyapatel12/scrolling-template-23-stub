@@ -37,7 +37,9 @@ const callback = (entries, _observer) => {
 const observer = new IntersectionObserver(callback, options);
 
 // define the elements that we want to observe against the viewport
-const target = document.getElementById("listItem");
+const targets = document.getElementsByClassName("animate");
 
 // Let the observer know we want to start observing right away
-observer.observe(target);
+for (const target of targets) {
+  observer.observe(target);
+}
