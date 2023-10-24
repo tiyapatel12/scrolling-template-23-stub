@@ -3,33 +3,36 @@
   padding: 0;
 }
 
-.image {
+/* set element to have viewport height */
+.full_height {
   height: 100vh;
 }
 
+/* define our blue color */
 .blue {
   background-color: #dcedfc;
 }
 
+/* define our green color */
 .green {
   background-color: #d4ffd5;
 }
 
-.red {
-  background-color: red;
-}
-
-/* The animation code */
+/* The animation code going from a specific background color to another */
 @keyframes redToYellow {
   from {
-    background-color: red;
+    background-color: #dcedfc;
   }
   to {
-    background-color: yellow;
+    background-color: #d4ffd5;
   }
 }
 
 .intersecting {
+  /*animation name so it can identify keyframe */
   animation-name: redToYellow;
+  /* how long does the animation last in seconds */
   animation-duration: 4s;
+  /* let it know that we want to keep the last keyframe */
+  animation-fill-mode: forwards;
 }
