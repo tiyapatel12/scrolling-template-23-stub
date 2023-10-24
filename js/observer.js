@@ -1,23 +1,25 @@
 let mainDiv = document.getElementById("scrollArea");
 
 let options = {
-  //root: mainDiv,
-  
   rootMargin: "0px",
-  threshold: 1.0,
+  //threshold before intersecting returns true (1 is full size). If zero will be intersecting when they are touching but not seeing it.
+  threshold: 0.1,
 };
 
 let callback = (entries, _observer) => {
   entries.forEach((entry) => {
-    console.log(entry.isIntersecting)
-    if(entry.isIntersecting) {
-      const element = entry.target
-      element.classList.add('intersecting')
+    const element = entry.target;
+    if (entry.isIntersecting) {
+      element.classList.add("intersecting");
+      return;
     }
+
+    element.classList.remove("intersecting");
   });
 };
 
 let observer = new IntersectionObserver(callback, options);
 
 let target = document.getElementById("listItem");
+
 observer.observe(target);
