@@ -47,17 +47,90 @@ body {
   animation-fill-mode: forwards;
 }
 
+.entering {
+  opacity: 0;
+}
+
 /* The animation code for an x translation */
 @keyframes leftToRight {
   0% {
-    transform: translateX(-1000px);
+    transform: translateX(-100px);
+    opacity: 0;
   }
   100% {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
 .intersecting.left-to-right {
   animation-name: leftToRight;
   animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+/* The animation code for an y translation */
+@keyframes bottomToTop {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.intersecting.bottom-to-top {
+  animation-name: bottomToTop;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+/* The animation for a bouncy entrance! */
+@keyframes slideInBottomZigZag {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(-100px);
+  }
+  20% {
+    transform: translateY(80px);
+  }
+  30% {
+    transform: translateY(-80px);
+  }
+  40% {
+    transform: translateY(60px);
+  }
+  50% {
+    transform: translateY(-60px);
+  }
+  60% {
+    transform: translateY(40px);
+  }
+  70% {
+    transform: translateY(-40px);
+  }
+  80% {
+    transform: translateY(20px);
+  }
+  90% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.intersecting.slide-in-bottom-zig-zag {
+  animation-name: slideInBottomZigZag;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
