@@ -20,7 +20,7 @@ const callback = (entries, _observer) => {
     // if intersecting -> let css know this element is in view
     if (entry.isIntersecting) {
       element.classList.add("intersecting");
-      return;
+      continue;
     }
 
     // if not intersecting -> let css know this element is out of view

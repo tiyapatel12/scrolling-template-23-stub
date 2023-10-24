@@ -3,9 +3,18 @@
   padding: 0;
 }
 
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(253, 253, 245);
+}
+
 /* set element to have viewport height */
-.full-height {
-  height: 100vh;
+.scrollable {
+  height: 1000px;
+  width: 900px;
+  margin: 50px;
 }
 
 /* define our blue color */
