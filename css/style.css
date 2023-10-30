@@ -132,9 +132,10 @@ div {
   }
 }
 
+/* The class combination that will trigger slideInBottomZigZag animation to happen  */
 .intersecting.slide-in-bottom-zig-zag {
   animation-name: slideInBottomZigZag;
   animation-duration: 2s;
-  animation-delay: 0.75s;
+  animation-delay: 0.75s; /* Set animation to start 0.75 seconds late to avoid Y mismatch transformation */
   animation-fill-mode: forwards;
 }
