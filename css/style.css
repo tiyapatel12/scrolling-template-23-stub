@@ -1,3 +1,4 @@
+/* set margin and paddign defaults to zero */
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +12,11 @@ body {
   background-color: rgb(253, 253, 245);
 }
 
-/* set element to occupy all viewport */
+/** 
+ * set element sizes:
+ * Width is fixed
+ * Height + Margin are 2vh above 100vh to prevent more than one element being in view at the same time.
+ */
 div {
   width: 800px;
   height: 70vh;
@@ -28,7 +33,7 @@ div {
   background-color: #d4ffd5;
 }
 
-/* The animation code going from a specific background color to another */
+/* The animation code going from a blue background color to green background color */
 @keyframes blueToGreen {
   from {
     background-color: #dcedfc;
@@ -38,20 +43,19 @@ div {
   }
 }
 
+/* The class combination that will trigger blueToGreen animation to happen */
 .intersecting.blue-to-green {
-  /*animation name so it can identify keyframe */
-  animation-name: blueToGreen;
-  /* how long does the animation last in seconds */
-  animation-duration: 4s;
-  /* let it know that we want to keep the last keyframe */
-  animation-fill-mode: forwards;
+  animation-name: blueToGreen; /* animation name so it can identify keyframe */
+  animation-duration: 4s; /* how long does the animation last in seconds */
+  animation-fill-mode: forwards; /* let it know that we want to keep the last keyframe */
 }
 
+/* entering objects should have a zero opacity set so that we don't see them floating for a ms */
 .entering {
   opacity: 0;
 }
 
-/* The animation code for an x translation */
+/* The animation code for an x left to right translation with an increasing opacity */
 @keyframes leftToRight {
   0% {
     transform: translateX(-100px);
@@ -63,6 +67,7 @@ div {
   }
 }
 
+/* The class combination that will trigger leftToRight animation to happen  */
 .intersecting.left-to-right {
   animation-name: leftToRight;
   animation-duration: 2s;
@@ -81,6 +86,7 @@ div {
   }
 }
 
+/* The class combination that will trigger bottomToTop animation to happen  */
 .intersecting.bottom-to-top {
   animation-name: bottomToTop;
   animation-duration: 2s;
@@ -90,47 +96,45 @@ div {
 /* The animation for a bouncy entrance! */
 @keyframes slideInBottomZigZag {
   0% {
-    transform: translateY(100px);
+    transform: translateX(-300px) translateY(250px);
     opacity: 0;
   }
   10% {
-    transform: translateY(-100px);
+    transform: translateX(280px) translateY(225px);
   }
   20% {
-    transform: translateY(80px);
+    transform: translateX(-260px) translateY(200px);
   }
   30% {
-    transform: translateY(-80px);
+    transform: translateX(240px) translateY(175px);
   }
   40% {
-    transform: translateY(60px);
+    transform: translateX(-220px) translateY(150px);
   }
   50% {
-    transform: translateY(-60px);
+    transform: translateX(200px) translateY(125px);
   }
   60% {
-    transform: translateY(40px);
+    transform: translateX(-180px) translateY(100px);
   }
   70% {
-    transform: translateY(-40px);
+    transform: translateX(160px) translateY(75px);
   }
   80% {
-    transform: translateY(20px);
+    transform: translateX(-140px) translateY(50px);
   }
   90% {
-    transform: translateY(-20px);
-  }
-  60% {
-    transform: translateY(40px);
+    transform: translateX(120px) translateY(25px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateX(0px) translateY(0px);
   }
 }
 
 .intersecting.slide-in-bottom-zig-zag {
   animation-name: slideInBottomZigZag;
   animation-duration: 2s;
+  animation-delay: 0.75s;
   animation-fill-mode: forwards;
 }
