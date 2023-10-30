@@ -12,7 +12,7 @@ body {
 }
 
 /* set element to occupy all viewport */
-.scrollable {
+div {
   width: 800px;
   height: 70vh;
   margin: 16vh;
