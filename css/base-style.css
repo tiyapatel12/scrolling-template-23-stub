@@ -13,6 +13,42 @@ body {
   background-color: rgb(253, 253, 245);
 }
 
+/* Set h1 style */
+h1 {
+  margin: 5px;
+  padding: 5px;
+  color: deeppink;
+}
+
+/* Set paragraphs style */
+p {
+  margin: 5px;
+  padding: 5px;
+  background-color: deeppink;
+}
+
+/* Set button style */
+button {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: lightpink;
+}
+
+/* Set button hover style */
+button:hover {
+  color: white;
+  background-color: deeppink;
+}
+
+/* Set all images to have 5% size of parent element and 5px margin */
+img {
+  width: 50%;
+  margin: 5px;
+}
+
+
 /** 
  * set element sizes:
  * Width is fixed
@@ -30,39 +66,24 @@ body {
 
 /* Define our blue color */
 .blue {
-  background-color: #dcedfc;
+  --blue-bg: #dcedfc;
+  background-color: var(--blue-bg);
+  /*background-color: #dcedfc;*/
 }
 
 /* Define our green color */
 .green {
-  background-color: #d4ffd5;
+  --green-bg: #d4ffd5;
+  background-color: var(--green-bg);
+  /*background-color: #d4ffd5; */
 }
 
-/* Set all images to have 5% size of parent element and 5px margin */
-img {
-  width: 50%;
-  margin: 5px;
+/* Define color of all paragraphs inside a blue container */
+.blue p {
+  color: var(--blue-bg);
 }
 
-/* Set paragraphs style */
-p {
-  margin: 5px;
-  padding: 5px;
-  background-color: deeppink;
-  color: white;
-}
-
-/* Set button style */
-button {
-  margin: 5px;
-  padding: 10px;
-  border: none;
-  border-radius: 25px;
-  background-color: lightpink;
-}
-
-/* Set button hover style */
-button:hover {
-  color: white;
-  background-color: deeppink;
+/* Define color of all paragraphs inside a green container */
+.green p {
+  color: var(--green-bg);
 }
