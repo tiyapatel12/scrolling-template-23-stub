@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: fantasy;
 }
 
 /* style for main body */
@@ -17,10 +18,14 @@ body {
  * Width is fixed
  * Height + Margin are 2vh above 100vh to prevent more than one element being in view at the same time.
  */
-div {
+.container {
   width: 800px;
   height: 70vh;
   margin: 16vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* define our blue color */
@@ -31,6 +36,32 @@ div {
 /* define our green color */
 .green {
   background-color: #d4ffd5;
+}
+
+/* style for all images */
+img {
+  width: 50%;
+  margin: 5px;
+}
+
+p {
+  background-color: deeppink;
+  padding: 5px;
+  color: white;
+  margin: 5px;
+}
+
+button {
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 5px;
+  background-color: lightpink;
+}
+
+button:hover {
+  color: white;
+  background-color: deeppink;
 }
 
 /* The animation code going from a blue background color to green background color */

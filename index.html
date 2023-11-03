@@ -7,15 +7,46 @@
     <link rel="stylesheet" href="./css/style.css" />
     <!-- Javascript script reference with deference (apply after loading) -->
     <script src="./js/observer.js" defer></script>
+    <script src="./js/audio.js" defer></script>
     <title>Intersectional Observer</title>
   </head>
 
   <body>
     <!-- Each div is a box that may contain some text -->
-    <div class="green"></div>
-    <div class="blue blue-to-green animate"></div>
-    <div class="green left-to-right animate entering"></div>
-    <div class="blue bottom-to-top animate entering"></div>
-    <div class="green slide-in-bottom-zig-zag animate entering"></div>
+    <div class="green container">
+      <h1>Once upon a time...</h1>
+      <button id="start-audio">Want Some Music?</button>
+    </div>
+    <div class="blue blue-to-green animate container">
+      <img src="pictures/under_skin.webp" />
+      <p>Scarlet Johanson was walking round town killing some bad guys</p>
+    </div>
+    <div class="green left-to-right animate entering container">
+      <img src="./pictures/hp.avif" />
+      <p>
+        But then Voldemort came and he tried to kill her but she was like nuh ha
+        and became Harry Potter
+      </p>
+    </div>
+    <div class="blue bottom-to-top animate entering container">
+      <img src="./pictures/grey_anatomy.webp" />
+
+      <p>
+        The medical community was shaken, they couldn't understand what had
+        happened!
+      </p>
+    </div>
+    <div class="green slide-in-bottom-zig-zag animate entering container">
+      <p>
+        But AH WELL in the end all was good and she went on to become a super
+        hero.
+      </p>
+      <button>
+        <a
+          href="https://www.youtube.com/watch?v=olPLvuvMcSE&ab_channel=DR4XTERTV"
+          >Click Me For Inspiration</a
+        >
+      </button>
+    </div>
   </body>
 </html>
