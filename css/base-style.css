@@ -1,0 +1,68 @@
+/* Set margin and paddign defaults to zero */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: fantasy;
+}
+
+/* Style for main body */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(253, 253, 245);
+}
+
+/** 
+ * set element sizes:
+ * Width is fixed
+ * Height + Margin are 2vh above 100vh to prevent more than one element being in view at the same time.
+ */
+.container {
+  width: 800px;
+  height: 70vh;
+  margin: 16vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Define our blue color */
+.blue {
+  background-color: #dcedfc;
+}
+
+/* Define our green color */
+.green {
+  background-color: #d4ffd5;
+}
+
+/* Set all images to have 5% size of parent element and 5px margin */
+img {
+  width: 50%;
+  margin: 5px;
+}
+
+/* Set paragraphs style */
+p {
+  margin: 5px;
+  padding: 5px;
+  background-color: deeppink;
+  color: white;
+}
+
+/* Set button style */
+button {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: lightpink;
+}
+
+/* Set button hover style */
+button:hover {
+  color: white;
+  background-color: deeppink;
+}
