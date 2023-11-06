@@ -15,7 +15,7 @@ We will also refresh knowledge related to:
 
 ## Step by step guide
 
-### Step One
+### Step One - Linking style and javascript files
 Let's start by looking at the code that already exists in this repository. You should be able to see the following files:
 
 ```
@@ -44,8 +44,8 @@ For today's workshop we will mainly work with:
 - `css/animations.css`
 - `js/observer.js`
 
-#### Step One Task:
-    Let's first link these files in our html main file.
+#### Task One:
+    Your first task is to link these files in your html main file.
 
 
 <details>
@@ -55,9 +55,55 @@ For today's workshop we will mainly work with:
 
 <details>
   <summary>Soltuion</summary>
-  You have to add the following lines on your html header:
+    You have to add the following lines on your html header:
 
     <link rel="stylesheet" href="./css/animation.css" />
     <script src="./js/animation-manager.js" defer></script>
   
+</details>
+
+### Step Two - Creating one animation
+We will now learn to create an animation. Before getting into this, let's look at the `index.html` file. The html is structured in different div contaienrs, each of them containing fragments of text, buttons and / or images.
+
+An example of this is the following:
+
+```
+<div class="container green">
+      <img src="./pictures/hp.avif" />
+      <p>
+        But then Voldemort came and he tried to kill her but she was like nuh ha
+        and became Harry Potter
+      </p>
+    </div>
+```
+
+If you take the first line `<div class="container green"` something noticeable happens here: this `div` has two classes attached to it: `container` and `green`. The `html`, `css` and `javascript` understand it as separate classes thanks to the blank space in between their names.
+
+If you now look at the `base-style.css` file, you will see that there are two bits of code that reference this `div`.
+
+First, the `.container` selector, in `line 57`, gives `container` properties to this `div`:
+```
+.container {
+  width: 800px;
+  height: 70vh;
+  margin: 16vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+```
+
+Secondly, the `.green` selector, in `line 75`, gives a `green` background to this `div`:
+
+```
+.green {
+  --green-bg: #d4ffd5;
+  background-color: var(--green-bg);
+}
+```
+
+<details>
+    <summary>Note</summary>
+    The line: "--green-bg: #d4ffd5;" is used to create a variable that stores the green background color. Feel free to look at the code and ask Diana to understand why it is set like this, but it is not necessary for the sake of this class.
 </details>
