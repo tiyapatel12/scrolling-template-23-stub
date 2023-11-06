@@ -428,3 +428,35 @@ const callback = (callbackTargets) => {
   };
 ```
 In this case, each `callbackTarget` element is the target that the callback uses to store additional information. This element has a `callbackTarget.target` property which is used to directly reference the `html` object and thus be able to interact with it's classes.
+
+## Generalizing The Code
+
+Imagine now that you have different types of animations that you want to trigger as the elements come in view, not just the `green-to-blue`. It is good practice to not use specific classes, but to use classes that are as abstract as possible. If we had a different animation for each of our `div` elements, as we will do later on, you would have to add a conditional check (an `if`) to see which specific class triggers the animation we want according to the current `target` and then do the appropriate change of class. This is a lot of extra work for the code! With a few modifications we can manage this differently.
+
+We're gonna use a new class called `intersecting`. Let's first head to all the divs that we have been currently been working with, i.e., the second, third and fifth, and make sure they all have a `green-to-blue` and `animate-on-view` tag. These divs classes in our `html` should look like this:
+
+```javascript
+"container green-to-blue animate-on-view"
+```
+
+Now in the `callback` function in our `javascript`, let's modify it to look like this:
+
+```javascript
+const callback = (callbackTargets) => {
+    for (const callbackTarget of callbackTargets) {
+      if(callbackTarget.isIntersecting) callbackTarget.target.classList.add('intersecting');
+      else callbackTarget.target.classList.remove('intersecting');
+    }
+};
+```
+
+This way, there is no specific reference in the `javascript` to which specific animation we are talking about. However, now the website doesn't work! Because the `css` also needs some modifications. We need to let `css` know that the `animation` code related to the `blue-to-green` element needs to be applied to all those elements that are `intersecting`. To do so, we can modify that bit of `css` like so:
+
+```css
+.green-to-blue.intersecting {
+    animation: greentobluebackground;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+```
+
