@@ -42,6 +42,12 @@ button:hover {
   background-color: deeppink;
 }
 
+/* Set button disabled style to all grey*/
+button:disabled {
+  background-color: lightgrey;
+  color: grey;
+}
+
 /* Set all images to have 5% size of parent element and 5px margin */
 img {
   width: 50%;
