@@ -237,7 +237,7 @@ Your animation-manager.js file should look similar to this:
 
 ```javascript
 const animationTriggerButton = document.getElementById("animator");
-animator.onclick = (event) => {
+animationTriggerButton.onclick = (event) => {
     console.log('The animation was triggered')
 }
 ```
@@ -285,8 +285,8 @@ You can add a button reset in your html by adding this on the following line of 
 You can add a button selection and a reset onclick trigger like so:
 
 ```javascript
-const reset = document.getElementById('animation-reset');
-reset.onclick = (event) => {
+const resetAnimationButton = document.getElementById('animation-reset');
+resetAnimationButton.onclick = (event) => {
     event.target.parentNode.classList.remove('green-to-blue');
 }
 ```
@@ -294,3 +294,4 @@ reset.onclick = (event) => {
 
 #### Challenge!
 Would you be able to add some code to mark when the button is enabled and disabled? The styling for css has already been set up to mark when a button is enabled or not, so all you'd have to do is manage the 'disabled' property between `html` and `javascript`.
+
