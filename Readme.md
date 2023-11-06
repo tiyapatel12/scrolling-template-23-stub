@@ -263,16 +263,31 @@ The problem though is that the animation is only triggered once. Can you think o
 
 **Second Hint:** You will need to use a second button.
 
+**Third Hint:** You can remove classes using the function `remove('class-name')`
+
 <details>
 <summary>Solution</summary>
-You can manage a removal and readding of the class everytime the button is clicked. This way, the animation gets triggered EVERY TIME the class is added onto the div. To do so, modify the function as so:
+You can add a secondary button to reset the animation. You will have to add this button first in the html, and then add code in the `javascript` to remove the class list when that button is clicked.
+</details>
+
+
+<details>
+<summary>Solution - Html</summary>
+You can add a button reset in your html by adding this on the following line of the animation trigger button:
+
+```html
+<button id="animation-reset">Reset Animation </button>
+```
+</details>
+
+<details>
+<summary>Solution - Javascript</summary>
+You can add a button selection and a reset onclick trigger like so:
 
 ```javascript
-animator.onclick = (event) => {
-    console.log('removing class');
+const reset = document.getElementById('animation-reset');
+reset.onclick = (event) => {
     event.target.parentNode.classList.remove('green-to-blue');
-    console.log('adding class');
-    event.target.parentNode.classList.add('green-to-blue');
 }
 ```
 </details>
