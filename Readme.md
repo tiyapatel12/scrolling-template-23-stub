@@ -13,9 +13,9 @@ We will also refresh knowledge related to:
 - Selecting elements from the page in javascript
 - Using built in javascript objects
 
-## Step by step guide
+## Creating Animations Walkthrough
 
-### Step One - Linking style and javascript files
+### Linking style and javascript files
 Let's start by looking at the code that already exists in this repository. You should be able to see the following files:
 
 ```
@@ -62,7 +62,7 @@ For today's workshop we will mainly work with:
   
 </details>
 
-### Step Two - Creating one animation
+### Multiple Classes
 We will now learn to create an animation. Before getting into this, let's look at the `index.html` file. The html is structured in different div contaienrs, each of them containing fragments of text, buttons and / or images.
 
 An example of this is the following:
@@ -106,4 +106,139 @@ Secondly, the `.green` selector, in `line 75`, gives a `green` background to thi
 <details>
     <summary>Note</summary>
     The line: "--green-bg: #d4ffd5;" is used to create a variable that stores the green background color. Feel free to look at the code and ask Diana to understand why it is set like this, but it is not necessary for the sake of this class.
+</details>
+
+#### Task Two
+
+See what happens if you remove or change any of the classes. For example, try changing some of the `green` to `blue` and viceversa, or remove the `container` property, and see how that affects the `html`. You should see that these classes are independent and each affect the `div` in a different way.
+
+## Let's animate!
+
+### Html Changes
+
+We will now create our first animation. We will make an animation that changes the color of the first `div`'s background from green to blue from the `css`.
+
+To start, in the first html `div`:
+- Replace the class `green` with the class `green-to-blue`
+
+<details>
+    <summary>Html Solution</summary>
+    Your first div of the index.html file should look like this:
+
+    <div class="container green-to-blue">
+      <h1>Once upon a time...</h1>
+      <button id="start-audio">Want Some Music?</button>
+    </div>
+</details>
+
+### The Animation Code
+To define the animation we are going to use a specific `css` rule called `keyframe`. A `keyframe` is defined by [W3 Schools](https://www.w3schools.com/cssref/css3_pr_animation-keyframes.php) as follows:
+
+> The @keyframes rule specifies the animation code.
+> The animation is created by gradually changing from one set of CSS styles to another.
+> During the animation, you can change the set of CSS styles many times.
+
+An example fo a `@keyframe` is:
+
+```css
+@keyframes greentobluebackground {
+  from {
+    background-color: #dcedfc;
+  }
+  to {
+    background-color: #d4ffd5;
+  }
+}
+```
+
+So, to continue:
+- Add the code for this example `keyframe` at the top of the `animations.css` file.
+
+This is telling `css` that we have now created a transitioning animation, but we have not yet linked the `keyframe` called `greentobluebackground` to any classes. 
+
+To link it to the elements with class `green-to-blue`:
+- Create a css selector using the `.green-to-blue` keyword
+- Add the css property `animation: greentobluebackground;` to style the selected elements
+- Add the css property `animation-duration: 5s;` to let css know we want a `5s` animation - otherwise it happens so quickly we don't even see it!
+
+<details>
+<summary>Solution</summary>
+In the end, your `css` file should look like this:
+
+```css
+@keyframes greentobluebackground {
+  from {
+    background-color: #dcedfc;
+  }
+  to {
+    background-color: #d4ffd5;
+  }
+}
+
+.green-to-blue {
+    animation: greentobluebackground;
+    animation-duration: 5s;
+}
+
+```
+</details>
+
+
+With this new code in place, check your live page!
+
+### Polishing
+
+Let's do some polishing. As the animation is working now, the step by step `css` changes are:
+
+- The div initially has transparent background color
+- The animation is triggered to change the background from green to blue
+- The style changes back to the original transparent style
+
+Let's do it so the style at the end of the animation is the same as the last animation frame. To do so, we can add the css property `animation-fill-mode: forwards;`.
+
+### Animating other divs
+
+Select a few random divs from the `html` and replace the color related class with the `green-to-blue` class. Let's see how the page evolves!
+
+....
+
+Unfortuantely, after looking at the live page, we cannot see the animations. This is because the animations are happening all at once, just after the page is loaded, before the divs are inside the viewport. We need to find a way to only trigger the animation code when an element is in viewport.
+
+To keep the code clean, remove the class `green-to-blue` from all `div`s except the first one.
+
+
+## Changing classes on javascript
+
+We can use `javascript` to change the style of our `html` live by changing the class of an `html element`. This trigger can happen at the click of a button, after a chain of events or, even, when the element appears in the viewport. We will begin by using a button to see the raw mechanics, to then add a viewport functionality.
+
+### Class Changing through Button Click
+
+To begin:
+- Add a button inside one of the container divs of the html other than the first one which reads "Animate Me"
+- Give the id `animator` to this button 
+- Create a constant variable in the `animation-manajger.js` pointint to that button called `animationTriggerButton`
+- Add an event listener for the `onclick` event linked to a function that simply logs in the console 'The animation was triggered'
+
+<details>
+<summary> Solution - HTML</summary>
+In your html you should have added a line inside one of the div containers like so:
+
+```html
+    <button id="animator">Animate Me</button>
+```
+</details>
+
+
+<details>
+<summary> Solution - Javascript</summary>
+Your animation-manager.js file should look similar to this: 
+
+**Note**: There are different ways to define an event function so the second line may look different for you. As long as you can see the log in the console when you click the button, you know that it is working.
+
+```javascript
+    const animationTriggerButton = document.getElementById("animator");
+    animator.onclick = () => {
+        console.log('The animation was triggered')
+    }
+```
 </details>
