@@ -236,9 +236,43 @@ Your animation-manager.js file should look similar to this:
 **Note**: There are different ways to define an event function so the second line may look different for you. As long as you can see the log in the console when you click the button, you know that it is working.
 
 ```javascript
-    const animationTriggerButton = document.getElementById("animator");
-    animator.onclick = () => {
-        console.log('The animation was triggered')
-    }
+const animationTriggerButton = document.getElementById("animator");
+animator.onclick = (event) => {
+    console.log('The animation was triggered')
+}
+```
+</details>
+
+
+With this log working, let's now add the code that will change the class when the button is clicked. To do so, add this code inside the `onclick` event function, instead of the `console.log`:
+
+```javascript
+event.target.parentNode.classList.add('green-to-blue');
+```
+
+This bit of code will do the following:
+- Wait for the button to be clicked
+- When the button is clicked, add the 'green-to-blue' class to the background
+- Since this class has only just now been added to the html element, the `css` animation only gets triggered now
+
+### Retriggering
+
+The problem though is that the animation is only triggered once. Can you think of a way to "retrigger" the animation every time the button gets clicked?
+
+**First Hint:** The method remove('class-name') might be useful. You can read about it in [this W3School article](https://www.w3schools.com/howto/howto_js_remove_class.asp). 
+
+**Second Hint:** You will need to use a second button.
+
+<details>
+<summary>Solution</summary>
+You can manage a removal and readding of the class everytime the button is clicked. This way, the animation gets triggered EVERY TIME the class is added onto the div. To do so, modify the function as so:
+
+```javascript
+animator.onclick = (event) => {
+    console.log('removing class');
+    event.target.parentNode.classList.remove('green-to-blue');
+    console.log('adding class');
+    event.target.parentNode.classList.add('green-to-blue');
+}
 ```
 </details>
