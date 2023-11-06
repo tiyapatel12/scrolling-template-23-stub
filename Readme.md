@@ -291,3 +291,6 @@ reset.onclick = (event) => {
 }
 ```
 </details>
+
+#### Challenge!
+Would you be able to add some code to mark when the button is enabled and disabled? The styling for css has already been set up to mark when a button is enabled or not, so all you'd have to do is manage the 'disabled' property between `html` and `javascript`.
