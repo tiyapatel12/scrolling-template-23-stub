@@ -214,7 +214,7 @@ We can use `javascript` to change the style of our `html` live by changing the c
 ### Class Changing through Button Click
 
 To begin:
-- Add a button inside one of the container divs of the html other than the first one which reads "Animate Me"
+- Add a button inside the third container div, the one that reads "But then Voldemort came and he tried to kill her..."
 - Give the id `animator` to this button 
 - Create a constant variable in the `animation-manajger.js` pointint to that button called `animationTriggerButton`
 - Add an event listener for the `onclick` event linked to a function that simply logs in the console 'The animation was triggered'
@@ -295,3 +295,136 @@ resetAnimationButton.onclick = (event) => {
 #### Challenge!
 Would you be able to add some code to mark when the button is enabled and disabled? The styling for css has already been set up to mark when a button is enabled or not, so all you'd have to do is manage the 'disabled' property between `html` and `javascript`.
 
+## Triggering class change upon viewport intersection
+
+Now that we've seen it's possible to trigger and retrigger animations through class changing, let's add functionality to the code to do so upon viewport intersection, i.e., when an element comes into view.
+
+For this we will use the [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) object. Let's' start with some theroy to understand how this object works. 
+
+> The Intersection Observer API provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+
+To build this Intersection Observer interaction, we have to define some elements in the javascript. These elements will be:
+- The **observer**, which is the parent object that is observing interactions. In our case the observer will be the viewport, i.e., the full screen.
+- The **targets**, which are each of the objects that we want to change every time they intersect with the observer. In our case, the targets will be each of the divs that are linked to an animation.
+- The **callback**, which is a specific type of function that is triggered every time an interaction between the observer and any of the targets happens. This function will manage the change of classes to trigger the animation.
+
+Let's open the `animation-manager.js` and start coding!
+
+#### Target Options
+
+In order to define the `observer` object we need to have some options predefined as well, to let the Intersection Observer API know what counts as an interaction. We will use the following object to define the `options`.
+
+```javascript
+const options = {
+  rootMargin: "0px",
+  // threshold before intersecting returns true (1 is full size). If zero will be intersecting when they are touching but not seeing it
+  threshold: 0.1,
+};
+```
+- The `rootMargin: 0px` indicates that the observer size matches the object to which it is linked to (in our case the viewport). If we added a margin, the observer would be a little bit smaller.
+- The `threshold: 0.1` (which can range from 0 to 1) indicates that we will interpret an intersection when the object is slightly in view. If this was set at `0`, the triggering would happen when the targeted object touches the observer but is not yet in view.
+
+I encourage you to play with these options at the end of today's class, to see what happens with each different possible setting!
+
+#### The Callback
+
+After defining the options we can define the callback, which is the funciton that will be triggered when each intersection happpens. For now, let's use a simple `console.log`. You can define the callback function like so:
+
+```javascript
+const callback = () => {
+    console.log('an intersection has been detected');
+}
+```
+
+
+#### The Observer Object
+
+With the `options` and the `callback` set up, we can now create the observer object with the following code:
+
+```javascript
+const observer = new IntersectionObserver(callback, options);
+```
+
+ As you can see, were not letting `javascript` know that this observer object should be link to the viewport. This is because we don't need to! The default Observer is the viewport. We could choose a different observer if we wanted to... for example, a floating square in the screen, by changing the options. Luckily, we do not need to do so in our case.
+
+ #### The Targets
+
+We need now to select which targets are going to be relevant to the observer. For this, we can use yet a new class, which we're gonna call `animate-on-view`. Head to the `index.html` file and add this class to the second and fifth `div`s, the one that reads `"Scarlet Johanson was walking round town..."` and the one that reads`"But AH WELL in the end all was good ..."`.
+
+Having done so, in the javascript, you can select all elements with class `animate-on-view` like so:
+```javascript
+const targets = document.getElementsByClassName("animate-on-view");
+```
+
+Finally, all we need to do is observe these elements with the `observer` object. We can loop through the array of targets with a special for loop:
+
+```javascript
+for(const target of targets) {
+    observer.observe(target);
+}
+```
+
+The javascript file, below the buttons settings, should now look like this:
+
+```javascript
+const options = {
+    rootMargin: "0px",
+    // threshold before intersecting returns true (1 is full size). If zero will be intersecting when they are touching but not seeing it
+    threshold: 0.1,
+  };
+
+const callback = () => {
+    console.log('an intersection has been detected');
+}
+
+
+const observer = new IntersectionObserver(callback, options);
+
+const targets = document.getElementsByClassName("animate-on-view");
+
+
+for(const target of targets) {
+    observer.observe(target);
+}
+```
+
+If you check the console, you will see that the message `'an intersection has been detected'` os logged every time each of these `div` either ENTERS or LEAVES the viewport.
+
+## Changing Classes in the Callback
+
+Let's now focus on how the `callback` interacts with each of these. Modify the `callback` to include a first parameter that will point to the `targets`. You can do so like this:
+
+```javascript
+const callback = (callbackTargets) => {
+    console.log('an intersection has been detected');
+}
+```
+
+Each time the callback is called, an array with modified `callbackTargets` is given to us. Each entry to this array corresponds to one of the original `target` objects we had defined. However, these `callbackTargets` contain additionel information referring to the state of the `target` in relation to the `observer`. We can check this state by iterating through the `callbackTargets` and logging by changing the `callback` definition like so:
+
+```javascript
+const callback = (callbackTargets) => {
+  console.log("an intersection has been detected");
+  for (const callbackTarget of callbackTargets) {
+    console.log(
+      "current target intersecting status is: " + callbackTarget.isIntersecting
+    );
+  }
+};
+```
+
+The `isIntersecting` value will either be `true` or `false` depending on whether the object that has triggered an intersection is in view or not. To try it, head over to your live page and check the logs.
+
+We will use this `isIntersecting` property to trigger the change of `class`, like we were doing before with the two different buttons. 
+
+We can do so by modifying the callback code once again like so:
+
+```javascript
+const callback = (callbackTargets) => {
+    for (const callbackTarget of callbackTargets) {
+      if(callbackTarget.isIntersecting) callbackTarget.target.classList.add('green-to-blue');
+      else callbackTarget.target.classList.remove('green-to-blue');
+    }
+  };
+```
+In this case, each `callbackTarget` element is the target that the callback uses to store additional information. This element has a `callbackTarget.target` property which is used to directly reference the `html` object and thus be able to interact with it's classes.
